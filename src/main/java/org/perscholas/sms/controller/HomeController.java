@@ -9,6 +9,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class HomeController {
 
+    @GetMapping("/")
+    public String dashboard() {
+        return "dashboard";
+    }
+
     @GetMapping("/login")
     public String login() {
         return "login";

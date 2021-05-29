@@ -21,7 +21,6 @@ import java.util.Set;
 // tells controller to apply @ModelAttribute function to all request mappings
 @ControllerAdvice // Delete when login functionality is added
 
-@SessionAttributes({"student"})  //creates a student object that can be called
 @Controller
 @RequestMapping("/user/student")
 @AllArgsConstructor
