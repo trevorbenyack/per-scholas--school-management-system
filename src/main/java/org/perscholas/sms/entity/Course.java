@@ -39,10 +39,10 @@ public class Course implements Serializable {
         inverseJoinColumns=@JoinColumn(name = "student_id"),
         joinColumns=@JoinColumn(name = "course_id")
     )
-    List<Course> students;
+    List<Student> students;
 
     @ToString.Exclude
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
     @JoinTable
     (
         name= "instructor_course",

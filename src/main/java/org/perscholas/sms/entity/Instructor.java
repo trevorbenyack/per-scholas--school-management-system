@@ -24,7 +24,7 @@ public class Instructor extends User implements Serializable {
     String officeId;
 
     @ToString.Exclude
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
     @JoinTable
     (
         name= "instructor_course",

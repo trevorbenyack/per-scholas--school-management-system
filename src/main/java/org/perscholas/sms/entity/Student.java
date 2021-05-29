@@ -25,7 +25,7 @@ public class Student extends User implements Serializable {
     Date graduationDate;
 
     @ToString.Exclude
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
     @JoinTable
     (
         name= "student_course",

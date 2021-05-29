@@ -185,13 +185,13 @@ Coded by www.creative-tim.com
                       </th>
                     </thead>
                     <tbody>
-                      <tr th:each="course : ${courses}">
-                        <td th:text="${course.courseName}">Dakota Rice</td>
-                        <td th:text="${course.courseCode}">Dakota Rice</td>
-                        <td th:text="${#dates.format(course.startDate, 'dd-MMM-yyyy')}">Dakota Rice</td>
-                        <td th:text="${#dates.format(course.endDate, 'dd-MMM-yyyy')}">Dakota Rice</td>
+                      <tr th:each="course : ${student.courses}">
+                        <td th:text="${course.courseName}">Course Name</td>
+                        <td th:text="${course.courseCode}">Course Code</td>
+                        <td th:text="${#dates.format(course.startDate, 'dd-MMM-yyyy')}">Start Date</td>
+                        <td th:text="${#dates.format(course.endDate, 'dd-MMM-yyyy')}">End Date</td>
                         <td>
-                          <p th:each="instructor : ${course.instructors}" th:text="${instructor.firstName}"></p>
+                          <p th:each="instructor : ${course.instructors}" th:text="|${instructor.lastName}, ${instructor.firstName}">Instructor</p>
                         </td>
                       </tr>
                     </tbody>
@@ -203,8 +203,8 @@ Coded by www.creative-tim.com
           <div class="col-md-12">
             <div class="card card-plain">
               <div class="card-header">
-                <h4 class="card-title"> Table on Plain Background</h4>
-                <p class="card-category"> Here is a subtitle for this table</p>
+                <h4 class="card-title"> Register for a Course</h4>
+                <p class="card-category"> Below are the available courses. Click "Add" to register for that course.</p>
               </div>
               <div class="card-body">
                 <div class="table-responsive">

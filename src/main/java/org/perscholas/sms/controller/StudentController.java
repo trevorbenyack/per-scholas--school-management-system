@@ -21,7 +21,7 @@ import java.util.Set;
 // tells controller to apply @ModelAttribute function to all request mappings
 @ControllerAdvice // Delete when login functionality is added
 
-@SessionAttributes({"student", "courses"})  //creates a student object that can be called
+@SessionAttributes({"student"})  //creates a student object that can be called
 @Controller
 @RequestMapping("/user/student")
 @AllArgsConstructor
@@ -30,40 +30,42 @@ public class StudentController {
 
     StudentService studentService;
 
-    // Sets student to 1
+    //github.com/trevorbenyack/per-scholas--school-management-system // Sets student to 1
     // This will be deleted once we add login functionality
     @ModelAttribute("student")
     public Student initializeStudent() {
 
+        List<Course> courses = studentService.getStudentById(1L).getCourses();
         System.out.println("inside initialize student");
+        courses.forEach(System.out::println);
 
         return studentService.getStudentById(1L);
     }
 
-    @ModelAttribute("courses")
-    public List<Course> initializeCourses() {
-        Student student = studentService.getStudentById(1L);
-        List<Course> courses = student.getCourses();
-
-        System.out.println("inside initialize student");
-        courses.forEach(System.out::println);
-        System.out.println("Instructors:");
-        for(Course course : courses) {
-            List<Instructor> instructors = course.getInstructors();
-            System.out.println("Course: " + course.getCourseName());
-            instructors.forEach(instructor -> {
-                System.out.println(instructor.getFirstName());
-            });
-        }
-
-
-
-        return courses;
-    }
+//    @ModelAttribute("courses")
+//    public List<Course> initializeCourses() {
+//        Student student = studentService.getStudentById(1L);
+//        List<Course> courses = student.getCourses();
+//
+//        System.out.println("inside initialize student");
+//        System.out.println("Instructors:");
+//        for(Course course : courses) {
+//            List<Instructor> instructors = course.getInstructors();
+//            System.out.println("Course: " + course.getCourseName());
+//            instructors.forEach(instructor -> {
+//                System.out.println(instructor.getFirstName());
+//            });
+//        }
+//
+//
+//
+//        return courses;
+//    }
 
     @GetMapping("/courses")
     public String courses() {
         List<Course> courses = studentService.getStudentById(1L).getCourses();
+        System.out.println("inside /courses");
         courses.forEach(System.out::println);
         return "courses";
     }
