@@ -11,6 +11,8 @@ import javax.persistence.EntityManagerFactory;
 @SpringBootApplication
 public class SmsMain {
 
+    static final Long userId = 1L;
+
     @Autowired
     public SmsMain(InitializerUtil initializerUtil) {
         initializerUtil.initializeData();
@@ -18,6 +20,8 @@ public class SmsMain {
 
     public static void main(String[] args) {
         SpringApplication.run(SmsMain.class, args);
+
+
 
     }
 }

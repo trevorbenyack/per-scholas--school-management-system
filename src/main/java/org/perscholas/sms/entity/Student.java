@@ -9,13 +9,15 @@ import java.util.List;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @ToString
 @Entity
 @PrimaryKeyJoinColumn(name = "student_id")
 public class Student extends User implements Serializable {
+
+    public Student() {
+        super.setUserType(UserType.STUDENT);
+    }
 
     static final long serialVersionUID = 6381462249344345007L;
 

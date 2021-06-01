@@ -2,11 +2,17 @@ package org.perscholas.sms.controller;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
+import org.perscholas.sms.entity.Course;
 import org.perscholas.sms.entity.User;
+import org.perscholas.sms.service.IdentityService;
+import org.perscholas.sms.service.InstructorService;
+import org.perscholas.sms.service.StudentService;
 import org.perscholas.sms.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 // tells controller to apply @ModelAttribute function to all request mappings
@@ -18,15 +24,18 @@ import org.springframework.web.bind.annotation.*;
 @Log
 public class UserController {
 
+
     UserService userService;
+    IdentityService identityService;
 
     // Sets user to 1
     // This will be deleted once we add login functionality
     @ModelAttribute("user")
     public User userObject() {
 
-        return userService.getUserbyId(1L);
+        return identityService.getCurrentUser();
     }
+
 
 //    // takes in userEmail from form,
 //    @GetMapping("/showUserDetails")
@@ -58,15 +67,7 @@ public class UserController {
 //        return "redirect:/user/showUserPage" ;
 //    }
 
-    @GetMapping("/profile")
-    public String showProfile(Model model) {
-        return "userProfile";
-    }
 
-    @PostMapping("/updateProfile")
-    public String updateProfile(@ModelAttribute("user") User user) {
-        userService.updateUser(user);
-        return "redirect:/user/profile";
-    }
+
 
 }

@@ -13,7 +13,7 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 -->
 <!DOCTYPE html >
-<html th:replace="~{templateFile :: template(~{::title}, ~{::#content}, ${'dashboard'})}" lang="en" xmlns:th="http://www.thymeleaf.org">
+<html th:replace="~{templateFile :: template(~{::title}, ~{::#content}, ${'dashboard'}, ${'dashboard'}, ~{::#scripts})}" lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <title>My Courses</title>
 <body>
@@ -189,6 +189,14 @@ Coded by www.creative-tim.com
       </div>
     </div>
   </div>
+</div>
+<div id="scripts">
+  <script>
+    $(document).ready(function() {
+      // Javascript method's body can be found in assets/assets-for-demo/js/demo.js
+      demo.initChartsPages();
+    });
+  </script>
 </div>
 </body>
 

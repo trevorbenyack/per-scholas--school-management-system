@@ -26,7 +26,7 @@ public class User implements Serializable {
     @Column(nullable = false)
     String password;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     String email;
 
     @Column(nullable = false)
@@ -50,5 +50,10 @@ public class User implements Serializable {
     String phoneNumber;
 
     String imageUrl;
+
+    // Using userType enum to avoid having to do extra db queries
+    // inorder to conditionally show views and view elements
+    UserType userType;
+
 
 }

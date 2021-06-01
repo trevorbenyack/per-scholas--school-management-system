@@ -1,10 +1,13 @@
 package org.perscholas.sms.controller;
 
+import org.perscholas.sms.entity.Course;
 import org.perscholas.sms.util.InitializerUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
 
 @Controller
 public class HomeController {
@@ -32,6 +35,11 @@ public class HomeController {
             // return drop down view of classes, return drop down view of instructors
 
         return null;
+    }
+
+    @GetMapping("/results")
+    public String results() {
+        return "dataTable";
     }
 
 

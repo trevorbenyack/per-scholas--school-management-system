@@ -7,18 +7,22 @@ import org.perscholas.sms.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class UserService {
 
     UserRepository userRepository;
+    InstructorService instructorService;
 
     // Find
     public User getUserbyId(Long id){
         return userRepository.getById(id);
     }
+
     public User getUserByEmail(String userEmail){
-        return userRepository.findByEmail(userEmail);
+        return userRepository.findByEmail(userEmail).stream().findFirst().orElse(null);
     }
 
     // Save
@@ -30,5 +34,6 @@ public class UserService {
     public User updateUser(User user) {
         return userRepository.saveAndFlush(user);
     }
+
 
 }

@@ -1,0 +1,191 @@
+<!DOCTYPE html >
+<html th:replace="~{templateFile :: template(~{::title}, ~{::#content}, ${'profile'}, ${'myProfile'}, ~{::#scripts})}" lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>My Profile</title>
+</head>
+<body>
+<div id="content" class="content">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card card-user">
+        <div class="image">
+          <img src="/creativeTimAssets/img/damir-bosnjak.jpg" th:src="@{/creativeTimAssets/img/damir-bosnjak.jpg}" alt="..." />
+        </div>
+        <div class="card-body">
+          <div class="author">
+
+            <img class="avatar border-gray" src="/creativeTimAssets/img/default-avatar.png" th:src="@{${user.imageUrl}}" alt="...">
+            <h5 th:text="|${user.firstName} ${user.lastName}|" class="title">User Name</h5>
+
+            <p class="description">
+              @<span th:text="${user.firstName} + ${user.lastName}"></span>
+            </p>
+          </div>
+          <!-- Hidden, but keeping here in case of future use case -->
+          <p class="description text-center" th:if="${false}">
+            "I like the way you work it <br>
+            No diggity <br>
+            I wanna bag it up"
+          </p>
+        </div>
+        <div class="card-footer">
+          <hr>
+          <div class="button-container">
+            <div class="row">
+              <div class="col-lg-3 col-md-6 col-6 ml-auto">
+                <h5>12<br><small>Files</small></h5>
+              </div>
+              <div class="col-lg-4 col-md-6 col-6 ml-auto mr-auto">
+                <h5>2GB<br><small>Used</small></h5>
+              </div>
+              <div class="col-lg-3 mr-auto">
+                <h5>24,6$<br><small>Spent</small></h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Courses</h4>
+        </div>
+        <div class="card-body">
+          <ul class="list-unstyled team-members">
+            <li>
+              <div class="row">
+                <div class="col-md-2 col-2">
+                  <div class="avatar">
+                    <img src="/creativeTimAssets/img/faces/ayo-ogunseinde-2.jpg" th:src="@{/creativeTimAssets/img/faces/ayo-ogunseinde-2.jpg}" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+                  </div>
+                </div>
+                <div class="col-md-7 col-7">
+                  DJ Khaled
+                  <br />
+                  <span class="text-muted"><small>Offline</small></span>
+                </div>
+                <div class="col-md-3 col-3 text-right">
+                  <button class="btn btn-sm btn-outline-success btn-round btn-icon"><i class="fa fa-envelope"></i></button>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="row">
+                <div class="col-md-2 col-2">
+                  <div class="avatar">
+                    <img src="@{/creativeTimAssets/img/faces/joe-gardner-2.jpg}" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+                  </div>
+                </div>
+                <div class="col-md-7 col-7">
+                  Creative Tim
+                  <br />
+                  <span class="text-success"><small>Available</small></span>
+                </div>
+                <div class="col-md-3 col-3 text-right">
+                  <button class="btn btn-sm btn-outline-success btn-round btn-icon"><i class="fa fa-envelope"></i></button>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="row">
+                <div class="col-md-2 col-2">
+                  <div class="avatar">
+                    <img src="/creativeTimAssets/img/faces/clem-onojeghuo-2.jpg" th:src="@{/creativeTimAssets/img/faces/clem-onojeghuo-2.jpg}" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+                  </div>
+                </div>
+                <div class="col-ms-7 col-7">
+                  Flume
+                  <br />
+                  <span class="text-danger"><small>Busy</small></span>
+                </div>
+                <div class="col-md-3 col-3 text-right">
+                  <button class="btn btn-sm btn-outline-success btn-round btn-icon"><i class="fa fa-envelope"></i></button>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="card card-user">
+        <div class="card-header">
+          <h5 class="card-title">Personal Information</h5>
+        </div>
+        <div class="card-body">
+          <form action="#" th:action="@{updateProfile}" method="post" th:object="${user}">
+            <div class="row">
+              <div class="col-md-5 pr-1">
+                <div class="form-group">
+                  <label for="user-id">User ID</label>
+                  <input type="text" class="form-control" disabled="" value="User ID" th:value="${user.id}" id="user-id">
+                </div>
+              </div>
+              <div class="col-md-4 px-1">
+                <div class="form-group">
+                  <label for="email">Email Address</label>
+                  <input type="email" id="email" class="form-control" placeholder="Email" th:value="${user.email}" th:field="*{email}">
+                </div>
+              </div>
+              <div class="col-md-3 pl-1">
+                <div class="form-group">
+                  <label for="phone-number">Phone Number</label>
+                  <input type="text" class="form-control" id="phone-number" placeholder="Phone Number" th:value="${user.phoneNumber}" th:field="*{phoneNumber}">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 pr-1">
+                <div class="form-group">
+                  <label for="first-name">First Name</label>
+                  <input type="text" class="form-control" id="first-name" placeholder="First Name" th:value="${user.firstName}" th:field="*{firstName}">
+                </div>
+              </div>
+              <div class="col-md-6 pl-1">
+                <div class="form-group">
+                  <label for="last-name">Last Name</label>
+                  <input type="text" class="form-control" id="last-name" placeholder="Last Name" th:value="${user.lastName}" th:field="*{lastName}">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="street-address">Street Address</label>
+                  <input type="text" class="form-control" id="street-address" placeholder="Street Address" th:value="${user.streetAddress}" th:field="*{streetAddress}">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4 pr-1">
+                <div class="form-group">
+                  <label for="city">City</label>
+                  <input type="text" id="city" class="form-control" placeholder="City" th:value="${user.city}" th:field="*{city}">
+                </div>
+              </div>
+              <div class="col-md-4 px-1">
+                <div class="form-group">
+                  <label for="country">Country</label>
+                  <input type="text" class="form-control" id="country" placeholder="Country" th:value="${user.country}" th:field="*{country}">
+                </div>
+              </div>
+              <div class="col-md-4 pl-1">
+                <div class="form-group">
+                  <label for="postal-code">Postal Code</label>
+                  <input type="text" class="form-control" id="postal-code" placeholder="Postal Code" th:value="${user.postalCode}" th:field="*{postalCode}">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="update ml-auto mr-auto">
+                <button type="submit" class="btn btn-primary btn-round">Update Profile</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+<div id="scripts"></div>
+</html>

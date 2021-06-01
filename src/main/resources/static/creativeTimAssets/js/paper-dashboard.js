@@ -142,14 +142,12 @@ paperDashboard = {
     $('#minimizeSidebar').click(function() {
       var $btn = $(this);
 
-      if (sidebar_mini_active == true) {
+      if (sidebar_mini_active == false) {
         $('body').addClass('sidebar-mini');
         sidebar_mini_active = true;
-        paperDashboard.showSidebarMessage('Sidebar mini activated...');
       } else {
         $('body').removeClass('sidebar-mini');
         sidebar_mini_active = false;
-        paperDashboard.showSidebarMessage('Sidebar mini deactivated...');
       }
 
       // we simulate the window Resize so the charts will get updated in realtime.

@@ -1,0 +1,166 @@
+<html th:replace="~{templateFile :: template(~{::title}, ~{::#content}, ${'courses'}, ${'register'}, ~{::#scripts})}" lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>
+        Register for Courses
+    </title>
+</head>
+
+<body>
+<div id="content" class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Available Courses</h4>
+                </div>
+                <div class="card-body">
+                    <div class="toolbar">
+                        <!--        Here you can write extra buttons/actions for the toolbar              -->
+                    </div>
+                    <table id="datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Course Code</th>
+                            <th class="disabled-sorting">ID</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th class="disabled-sorting">Add</th>
+                        </tr>
+                        </thead>
+                        <tfoot>
+                        <tr>
+                            <th>Name</th>
+                            <th>Course Code</th>
+                            <th>ID</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th class="disabled-sorting text-center">Add</th>
+                        </tr>
+                        </tfoot>
+                        <tbody>
+                        <tr th:each="course : ${unregCourses}">
+                            <td th:text="${course.courseName}">Course Name</td>
+                            <td th:text="${course.courseCode}">Course Code</td>
+                            <td th:text="${course.courseId}">Course ID</td>
+                            <td th:text="${#dates.format(course.startDate, 'dd-MMM-yyyy')}">Start Date</td>
+                            <td th:text="${#dates.format(course.endDate, 'dd-MMM-yyyy')}">End Date</td>
+                            <td class="text-center">
+                                <a href="#" class="btn btn-info btn-link btn-icon btn-md add"><i class="fa fa-plus-square"></i></a>
+                            </td>
+                        </tr>
+                        </tbody>
+
+                    </table>
+                </div><!-- end content-->
+            </div><!--  end card  -->
+        </div> <!-- end col-md-12 -->
+    </div> <!-- end row -->
+</div>
+<div id="scripts">
+    <script>
+        function showSidebarMessage(message) {
+            try {
+                $.notify({
+                    // icon: "fa fa-check",
+                    message: message
+                }, {
+                    type: 'success',
+                    delay: 500,
+                    placement: {
+                        from: 'top',
+                        align: 'center'
+                    }
+                });
+            } catch (e) {
+                console.log('Notify library is missing, please make sure you have the notifications library added.');
+            }
+        }
+
+        $(document).ready(function() {
+            $('#datatable').DataTable({
+                "pagingType": "full_numbers",
+                "lengthMenu": [
+                    [5, 10, 25, 50, -1],
+                    [5, 10, 25, 50, "All"]
+                ],
+                responsive: true,
+                language: {
+                    search: "_INPUT_",
+                    searchPlaceholder: "Filter classes",
+                }
+
+            });
+
+            const table = $('#datatable').DataTable();
+
+            // Add a course
+            table.on('click', '.add', function(e) {
+                const $tr = $(this).closest('tr');
+                const data = table.row($tr).data();
+                // alert('Course ID is ' + data[2]);
+
+                // Reference: https://dev.to/safejourneyart/two-ways-to-post-data-without-reloading-4g4a
+                // changed example to formData.append b/c I was getting errors trying instantiate
+                // formData w/ something other than an HTML element
+                const ajax = new XMLHttpRequest();
+                const formData = new FormData();
+                formData.append('Id', data[2]);
+                ajax.open("POST", "./registerStudentToCourse", true);
+                ajax.send(formData);
+
+                showSidebarMessage("✔   Success! You're registered for: " + data[0]);
+
+                // removes from table
+                table.row($tr).remove().draw();
+
+                e.preventDefault();
+            });
+
+
+
+            // NOT USED
+            // Delete a record
+            table.on('click', '.remove', function(e) {
+                $tr = $(this).closest('tr');
+                table.row($tr).remove().draw();
+                e.preventDefault();
+            });
+
+            // NOT USED
+            //Like record
+            table.on('click', '.like', function() {
+                alert('You clicked on Like button');
+            });
+        });
+
+
+
+
+            // // This will be the action when clicking the "Add" button for a course
+            // // Reference: https://dev.to/safejourneyart/two-ways-to-post-data-without-reloading-4g4a
+            // function registerForCourse(){
+            // const ajax = new XMLHttpRequest();
+            // const data = document.getElementById("ID");
+            // const formdata = new FormData(data);
+            // ajax.open("POST", "/actionname", true);
+            // ajax.send(formdata);
+        // }
+        //     // This will be the action for re-rendering the enrolled-courses list
+        //     function renderEnrolledCoursesList(){
+        //     const ajax = new XMLHttpRequest();
+        //     ajax.onreadystatechange = function(){
+        //     if(this.readyState == 4 && this.status == 200){
+        //     document.getElementById("ID").innerHTML = this.responseText;
+        // }
+        // };
+        //     ajax.open("GET", "filename.html", true);
+        //     ajax.send();
+        // }
+
+    </script>
+</div>
+</body>
+
+
+
