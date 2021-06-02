@@ -96,6 +96,7 @@ Coded by www.creative-tim.com
                         <i class="nc-icon nc-hat-3"></i>
                         <p>
                             Courses <b class="caret"></b>
+
                         </p>
                     </a>
                     <div id="coursesMenu" class="collapse show" th:class="${navBarSelection == 'courses' ? 'collapse show' : 'collapse'}">
@@ -116,7 +117,8 @@ Coded by www.creative-tim.com
                     </div>
                 </li>
                 <!-- Admin -->
-                <li th:class="${navBarSelection == 'admin' ? 'active' : ''}">
+
+                <li sec:authorize="hasRole('ROLE_ADMIN')" th:class="${navBarSelection == 'admin' ? 'active' : ''}">
                     <a data-toggle="collapse" href="#adminMenu">
                         <i class="nc-icon nc-badge"></i>
                         <p>
@@ -152,6 +154,7 @@ Coded by www.creative-tim.com
                         </ul>
                     </div>
                 </li>
+
                 <!-- School Info -->
                 <li th:class="${navBarSelection == 'generalInfo' ? 'active' : ''}">
                     <a th:href="@{/generalInfo}">

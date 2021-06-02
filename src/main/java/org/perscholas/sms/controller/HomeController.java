@@ -27,6 +27,12 @@ public class HomeController {
         return "generalInformation";
     }
 
+    //403 page
+    @GetMapping("/403")
+    public String access(){
+        return "403";
+    }
+
 
 
 }
