@@ -2,11 +2,12 @@ package org.perscholas.sms.entity;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
-
+@Component
 @Getter
 @Setter
 @NoArgsConstructor

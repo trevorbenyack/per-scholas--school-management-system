@@ -36,6 +36,11 @@ public class UserController {
         return identityService.getCurrentUser();
     }
 
+    @GetMapping("/dashboard")
+    public String dashboard() {
+        return("dashboard");
+    }
+
 
 //    // takes in userEmail from form,
 //    @GetMapping("/showUserDetails")

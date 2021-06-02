@@ -13,7 +13,7 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 -->
 <!doctype html>
-<html th:fragment="template (title, content, navBarSelection, subSelection, scripts)" lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<html th:fragment="template (title, content, navBarSelection, subSelection, scripts)" lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 <head>
     <meta charset="utf-8"/>
@@ -83,14 +83,16 @@ Coded by www.creative-tim.com
             <ul class="nav">
                 <!-- Dashboard -->
                 <li th:class="${navBarSelection == 'dashboard' ? 'active' : ''}">
-                    <a th:href="@{/}">
+                    <a th:href="@{'/' + ${user.userType.getCapName().toLowerCase()} + '/dashboard'}">
                         <i class="nc-icon nc-layout-11"></i>
                         <p>Dashboard</p>
                     </a>
                 </li>
                 <!-- Courses -->
-                <li th:class="${navBarSelection == 'courses' ? 'active' : ''}">
-                    <a data-toggle="collapse" href="#coursesMenu" aria-expanded="true">
+
+                <li sec:authorize="hasRole('ROLE_STUDENT')"
+                    th:class="${navBarSelection == 'courses' ? 'active' : ''}">
+                    <a data-toggle="collapse" href="#coursesMenu">
                         <i class="nc-icon nc-hat-3"></i>
                         <p>
                             Courses <b class="caret"></b>
@@ -151,8 +153,8 @@ Coded by www.creative-tim.com
                     </div>
                 </li>
                 <!-- School Info -->
-                <li>
-                    <a href="../examples/charts.html">
+                <li th:class="${navBarSelection == 'generalInfo' ? 'active' : ''}">
+                    <a th:href="@{/generalInfo}">
                         <i class="nc-icon nc-paper"></i>
                         <p>General Information</p>
                     </a>
@@ -311,6 +313,8 @@ Coded by www.creative-tim.com
 <script th:src="@{/creativeTimAssets/js/plugins/bootstrap-notify.js}"></script>
 <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
 <script th:src="@{/creativeTimAssets/js/paper-dashboard.js}"></script>
+<!-- Paper Dashboard DEMO methods, don't include it in your project! -->
+<script th:src="@{/creativeTimAssets/demo/demo.js}"></script>
 
 <noscript>
     <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=111649226022273&ev=PageView&noscript=1" />

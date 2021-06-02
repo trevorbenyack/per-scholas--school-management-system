@@ -13,8 +13,8 @@ import java.util.List;
 public class HomeController {
 
     @GetMapping("/")
-    public String dashboard() {
-        return "dashboard";
+    public String index() {
+        return "login";
     }
 
     @GetMapping("/login")
@@ -22,24 +22,9 @@ public class HomeController {
         return "login";
     }
 
-    @PostMapping("/login")
-    public String processLogin() {
-
-        // If student, return student header
-            // return list of classes
-            // also return a list view w/ a register button that they can register for a class
-        // If instructor, return instructor header
-            // return list of classes
-        // If admin instructor, return admin header
-            // return list of classes
-            // return drop down view of classes, return drop down view of instructors
-
-        return null;
-    }
-
-    @GetMapping("/results")
-    public String results() {
-        return "dataTable";
+    @GetMapping("/generalInfo")
+    public String generalInfo() {
+        return "generalInformation";
     }
 
 

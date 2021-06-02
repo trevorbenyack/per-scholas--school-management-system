@@ -1,0 +1,11 @@
+insert into auth_group (a_email, a_auth_group) values ('hluckham0@google.ru','ROLE_STUDENT');
+insert into auth_group (a_email, a_auth_group) values ('sbowden1@yellowbook.com','ROLE_STUDENT');
+insert into auth_group (a_email, a_auth_group) values ('qllorens2@howstuffworks.com','ROLE_STUDENT');
+insert into auth_group (a_email, a_auth_group) values ('cstartin3@flickr.com','ROLE_STUDENT');
+insert into auth_group (a_email, a_auth_group) values ('tattwool4@biglobe.ne.jp','ROLE_STUDENT');
+insert into auth_group (a_email, a_auth_group) values ('hguerre5@deviantart.com','ROLE_INSTRUCTOR');
+insert into auth_group (a_email, a_auth_group) values ('aiannitti7@is.gd','ROLE_INSTRUCTOR');
+insert into auth_group (a_email, a_auth_group) values ('ljiroudek8@sitemeter.com','ROLE_INSTRUCTOR');
+insert into auth_group (a_email, a_auth_group) values ('cjaulme9@bing.com','ROLE_INSTRUCTOR');
+insert into auth_group (a_email, a_auth_group) values ('trb@g.com','ROLE_INSTRUCTOR');
+insert into auth_group (a_email, a_auth_group) values ('trb@g.com','ROLE_ADMIN');

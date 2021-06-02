@@ -104,6 +104,11 @@ public class StudentController {
         return "success";
     }
 
+    @GetMapping("/dashboard")
+    public String dashboard() {
+        return "dashboard";
+    }
+
 
 
 }

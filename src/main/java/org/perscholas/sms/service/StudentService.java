@@ -42,7 +42,6 @@ public class StudentService {
         if (studentExistsById(identityService.getCurrentUser().getId())) {
             return getStudentById(identityService.getCurrentUser().getId());
         }
-
         return null;
     }
 

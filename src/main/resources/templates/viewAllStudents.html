@@ -5,6 +5,32 @@
     </title>
 </head>
 <body>
-<div id="content" class="content"></div>
+<div id="content" class="content">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title"> All Students</h4>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead class="text-left">
+                        <th>Id</th>
+                        <th>Last Name</th>
+                        <th>First Name</th>
+                        <th>Email</th>
+                    </thead>
+                    <tbody>
+                        <tr th:each="student : ${students}" style="font-size: 14px">
+                            <td th:text="${student.id}">Id</td>
+                            <td th:text="${student.lastName}">Last Name</td>
+                            <td th:text="${student.firstName}">First Name</td>
+                            <td th:text="${student.email}">Email</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 <div id="scripts"></div>
 </body>
