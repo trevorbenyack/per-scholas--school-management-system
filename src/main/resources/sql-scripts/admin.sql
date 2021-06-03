@@ -1,0 +1,1 @@
+insert into admin (admin_id) values (10);

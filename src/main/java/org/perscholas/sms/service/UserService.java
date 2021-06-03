@@ -6,11 +6,13 @@ import org.perscholas.sms.entity.User;
 import org.perscholas.sms.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
 @AllArgsConstructor
+@Transactional
 public class UserService {
 
     UserRepository userRepository;
@@ -29,6 +31,7 @@ public class UserService {
     public User saveUser(User newUser){
         return userRepository.saveAndFlush(newUser);
     }
+
 
     // Update
     public User updateUser(User user) {

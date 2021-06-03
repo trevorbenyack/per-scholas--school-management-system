@@ -48,6 +48,9 @@ public class InitializerUtil {
         sqlFilePath = Paths.get("src/main/resources/sql-scripts/authGroup.sql");
         executeQueries(sqlFilePath, em);
 
+        sqlFilePath = Paths.get("src/main/resources/sql-scripts/admin.sql");
+        executeQueries(sqlFilePath, em);
+
     }
 
     private void executeQueries(Path sqlFilePath, EntityManager em) {

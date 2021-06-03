@@ -1,6 +1,7 @@
 package org.perscholas.sms.controller;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.java.Log;
 import org.perscholas.sms.entity.Student;
 import org.perscholas.sms.entity.User;
 import org.perscholas.sms.service.AdminService;
@@ -15,6 +16,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/admin")
 @AllArgsConstructor
+@Log
 public class AdminController {
 
     StudentService studentService;
@@ -56,6 +58,8 @@ public class AdminController {
 
     @GetMapping("/profile")
     public String showProfile(Model model) {
+
+        log.info("admin/profile has been requested");
 
         User user = adminService.getCurrentAdmin();
 

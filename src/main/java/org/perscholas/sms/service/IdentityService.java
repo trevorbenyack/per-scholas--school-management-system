@@ -23,7 +23,6 @@ import javax.annotation.PostConstruct;
 public class IdentityService {
 
     // STUBBING
-    String userEmail = "hluckham0@google.ru";
     UserService userService;
 
     public IdentityService(UserService userService) {

@@ -1,6 +1,7 @@
 package org.perscholas.sms.service;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.java.Log;
 import org.perscholas.sms.dao.AdminRepository;
 import org.perscholas.sms.entity.Admin;
 import org.springframework.stereotype.Service;
@@ -11,6 +12,7 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
+@Log
 public class AdminService {
     
     AdminRepository adminRepository;
@@ -33,9 +35,15 @@ public class AdminService {
 
     public Admin getCurrentAdmin() {
 
+        log.info("inside getCurrentAdmin");
+
         if (adminExistsById(identityService.getCurrentUser().getId())) {
+            log.info("current admin is " + getAdminById(identityService.getCurrentUser().getId()).toString());
             return getAdminById(identityService.getCurrentUser().getId());
+        } else {
+            log.info("No admin found");
+            return null;
         }
-        return null;
+
     }
 }
