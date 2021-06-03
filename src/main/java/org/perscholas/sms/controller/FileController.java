@@ -36,7 +36,7 @@ public class FileController {
         redirectAttributes.addFlashAttribute("message", "You successfully uploaded " + file.getOriginalFilename());
         redirectAttributes.addFlashAttribute("filename", "file-uploads" + File.separator +file.getOriginalFilename());
 
-        String filePath = "../file-uploads/" + file.getOriginalFilename();
+        String filePath = "/file-uploads/" + file.getOriginalFilename();
         // String filePath = "this/should/be/our/path" + file.getOriginalFilename();
         User user = identityService.getCurrentUser();
         user.setImageUrl(filePath);

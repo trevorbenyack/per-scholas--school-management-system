@@ -13,9 +13,9 @@
         </div>
         <div class="card-body">
           <div class="author">
-            <form th:action="@{/upload-photo}" method="post" enctype="multipart/form-data" th:object="${user}">
+            <form th:action="@{/upload-photo}" method="post" enctype="multipart/form-data">
               <img class="avatar border-gray" src="/creativeTimAssets/img/default-avatar.png" th:src="@{${user.imageUrl}}" alt="...">
-              <input type="file" name="imageUrl" id="wizard-picture">
+              <input type="file" name="imageUrl">
               <button type="submit">Change Photo</button>
             </form>
 
