@@ -13,8 +13,12 @@
         </div>
         <div class="card-body">
           <div class="author">
+            <form th:action="@{/upload-photo}" method="post" enctype="multipart/form-data" th:object="${user}">
+              <img class="avatar border-gray" src="/creativeTimAssets/img/default-avatar.png" th:src="@{${user.imageUrl}}" alt="...">
+              <input type="file" name="imageUrl" id="wizard-picture">
+              <button type="submit">Change Photo</button>
+            </form>
 
-            <img class="avatar border-gray" src="/creativeTimAssets/img/default-avatar.png" th:src="@{${user.imageUrl}}" alt="...">
             <h5 th:text="|${user.firstName} ${user.lastName}|" class="title">User Name</h5>
 
             <p class="description">
@@ -72,7 +76,7 @@
               <div class="row">
                 <div class="col-md-2 col-2">
                   <div class="avatar">
-                    <img src="@{/creativeTimAssets/img/faces/joe-gardner-2.jpg}" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+                    <img th:src="@{/creativeTimAssets/img/faces/joe-gardner-2.jpg}" alt="Circle Image" class="img-circle img-no-padding img-responsive">
                   </div>
                 </div>
                 <div class="col-md-7 col-7">

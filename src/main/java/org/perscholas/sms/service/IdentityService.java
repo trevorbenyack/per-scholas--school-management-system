@@ -12,6 +12,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 
 import javax.annotation.PostConstruct;
@@ -20,6 +21,7 @@ import javax.annotation.PostConstruct;
 @Getter
 @Setter
 @Log
+@Transactional
 public class IdentityService {
 
     // STUBBING

@@ -493,7 +493,6 @@ demo = {
         $('.set-full-height').css('height', 'auto');
 
         //Function to show image before upload
-
         function readURL(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
