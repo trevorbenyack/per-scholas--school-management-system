@@ -4,7 +4,9 @@ import lombok.AllArgsConstructor;
 import org.perscholas.sms.dao.StudentRepository;
 import org.perscholas.sms.entity.Course;
 import org.perscholas.sms.entity.Student;
+import org.perscholas.sms.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,8 +31,8 @@ public class StudentService {
 
     }
 
-    public List<Student> getAllStudents(){
-        return studentRepository.findAll();
+    public List<User> getAllStudents(){
+        return studentRepository.findAllStudents();
     }
 
     public boolean studentExistsById(Long studentId) {

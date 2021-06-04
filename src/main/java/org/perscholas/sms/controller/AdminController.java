@@ -27,7 +27,7 @@ public class AdminController {
 
     @GetMapping("/viewAllStudents")
     public String viewAllStudents(Model model) {
-        List<Student> students = studentService.getAllStudents();
+        List<User> students = studentService.getAllStudents();
         model.addAttribute("students", students);
         model.addAttribute("user", identityService.getCurrentUser());
         return "viewAllStudents";
