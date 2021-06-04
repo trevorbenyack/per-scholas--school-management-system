@@ -21,7 +21,5 @@ public class SmsMain {
     public static void main(String[] args) {
         SpringApplication.run(SmsMain.class, args);
 
-
-
     }
 }

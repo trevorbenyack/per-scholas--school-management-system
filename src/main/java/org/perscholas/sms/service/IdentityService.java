@@ -31,16 +31,6 @@ public class IdentityService {
         this.userService = userService;
     }
 
-
-    //    @Autowired
-//    public IdentityService(UserService userService, @AuthenticationPrincipal AppUserPrincipal currentUser) {
-//        this.userService = userService;
-//        this.userEmail = currentUser.getUsername();
-//
-//        log.info("Inside IdentityService, current user is " + currentUser.getUsername());
-//
-//    }
-
     public User getCurrentUser() {
 
         Object user = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -48,13 +38,13 @@ public class IdentityService {
 
         if (user instanceof UserDetails) {
             username = ((UserDetails)user).getUsername();
-            log.info("inside if: username is " + username);
+            log.info("inside IdentityService > getCurrentUser() > if: username is " + username);
         } else {
             username = user.toString();
             log.info("inside else");
         }
 
-        return userService.getUserByEmail(username);
+        return userService.getUserbyId(Long.parseLong(username));
     }
 
 

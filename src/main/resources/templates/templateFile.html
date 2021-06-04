@@ -49,7 +49,7 @@ Coded by www.creative-tim.com
                 <!-- <p>CT</p> -->
             </a>
             <a th:href="@{/}" class="simple-text logo-normal">
-                <span th:text="${user.userType}"></span> Portal
+                User Portal
                 <!-- <div class="logo-image-big">
                   <img th:href="@{/creativeTimAssets/img/logo-big.png">
                 </div> -->
@@ -71,7 +71,7 @@ Coded by www.creative-tim.com
                     <div class="collapse show" id="userProfile" th:class="${navBarSelection == 'profile' ? 'collapse show' : 'collapse'}">
                         <ul class="nav">
                             <li th:class="${subSelection == 'myProfile' ? 'active disableLink' : ''}">
-                                <a th:href="@{'/' + ${user.userType.getCapName().toLowerCase()} + '/profile'}">
+                                <a th:href="@{/user/profile}">
                                     <span class="sidebar-mini-icon">MP</span>
                                     <span class="sidebar-normal">My Profile</span>
                                 </a>
@@ -83,7 +83,7 @@ Coded by www.creative-tim.com
             <ul class="nav">
                 <!-- Dashboard -->
                 <li th:class="${navBarSelection == 'dashboard' ? 'active' : ''}">
-                    <a th:href="@{'/' + ${user.userType.getCapName().toLowerCase()} + '/dashboard'}">
+                    <a th:href="@{/user/dashboard}">
                         <i class="nc-icon nc-layout-11"></i>
                         <p>Dashboard</p>
                     </a>

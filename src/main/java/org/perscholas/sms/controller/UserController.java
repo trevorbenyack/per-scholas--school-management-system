@@ -28,16 +28,11 @@ public class UserController {
     UserService userService;
     IdentityService identityService;
 
-    // Sets user to 1
-    // This will be deleted once we add login functionality
-    @ModelAttribute("user")
-    public User userObject() {
-
-        return identityService.getCurrentUser();
-    }
 
     @GetMapping("/dashboard")
-    public String dashboard() {
+    public String dashboard(Model model) {
+
+        model.addAttribute("user", identityService.getCurrentUser());
         return("dashboard");
     }
 
@@ -72,7 +67,21 @@ public class UserController {
 //        return "redirect:/user/showUserPage" ;
 //    }
 
+    @GetMapping("/profile")
+    public String showProfile(Model model) {
 
+        log.info("admin/profile has been requested");
 
+        User user = identityService.getCurrentUser();
+
+        model.addAttribute("user", user);
+        return "profile";
+    }
+
+    @PostMapping("/updateProfile")
+    public String updateProfile(@ModelAttribute("user") User user) {
+        userService.updateUser(user);
+        return "redirect:/admin/profile";
+    }
 
 }

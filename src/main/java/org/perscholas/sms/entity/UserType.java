@@ -1,19 +1,27 @@
 package org.perscholas.sms.entity;
 
-public enum UserType {
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
-    STUDENT("Student"),
-    INSTRUCTOR("Instructor"),
-    ADMIN("Admin");
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import java.io.Serializable;
 
-    private String capName;
+// This entity holds the different types of users (e.g. Student, Instructor, Admin)
 
-    private UserType(String capName) {
-        this.capName = capName;
-    }
+@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
+public class UserType implements Serializable {
+    private static final long serialVersionUID = 1L;
 
-    public String getCapName() {
-        return capName;
-    }
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    Long UserTypeId;
 
+    UserTypeTitle userTypeTitle;
 }

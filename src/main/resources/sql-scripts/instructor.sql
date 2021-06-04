@@ -1,5 +1,5 @@
-insert into instructor (instructor_id) values (6);
-insert into instructor (instructor_id) values (7);
-insert into instructor (instructor_id) values (8);
-insert into instructor (instructor_id) values (9);
-insert into instructor (instructor_id) values (10);
+insert into instructor (user_auth_type_auth_type_id) VALUES (6);
+insert into instructor (user_auth_type_auth_type_id) VALUES (7);
+insert into instructor (user_auth_type_auth_type_id) VALUES (8);
+insert into instructor (user_auth_type_auth_type_id) VALUES (9);
+insert into instructor (user_auth_type_auth_type_id) VALUES (10);

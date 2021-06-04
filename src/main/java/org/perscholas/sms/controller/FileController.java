@@ -42,7 +42,7 @@ public class FileController {
         user.setImageUrl(filePath);
         userService.updateUser(user);
 
-        return "redirect:/admin/profile";
+        return "redirect:/user/profile";
 
     }
 }

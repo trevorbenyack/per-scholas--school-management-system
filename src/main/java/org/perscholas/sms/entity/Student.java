@@ -12,14 +12,16 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @ToString
 @Entity
-@PrimaryKeyJoinColumn(name = "student_id")
-public class Student extends User implements Serializable {
-
-    public Student() {
-        super.setUserType(UserType.STUDENT);
-    }
+@NoArgsConstructor
+public class Student implements Serializable {
 
     static final long serialVersionUID = 6381462249344345007L;
+
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long studentId;
+
+    @OneToOne
+    UserAuthType userAuthType;
 
     Integer dormId;
     Integer roomNum;

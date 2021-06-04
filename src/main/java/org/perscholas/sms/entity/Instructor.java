@@ -14,14 +14,18 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @ToString
 @Entity
-@PrimaryKeyJoinColumn(name = "instructor_id")
-public class Instructor extends User implements Serializable {
+public class Instructor implements Serializable {
 
     static final long serialVersionUID = 6382462249344345007L;
 
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long instructorId;
     String department;
     String title;
     String officeId;
+
+    @OneToOne
+    UserAuthType userAuthType;
 
     @ToString.Exclude
     @ManyToMany

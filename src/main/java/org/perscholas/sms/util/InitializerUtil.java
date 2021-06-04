@@ -27,10 +27,16 @@ public class InitializerUtil {
         EntityManager em = entityManagerFactory.createEntityManager();
         Path sqlFilePath;
 
+        sqlFilePath = Paths.get("src/main/resources/sql-scripts/User.sql");
+        executeQueries(sqlFilePath, em);
+
         sqlFilePath = Paths.get("src/main/resources/sql-scripts/Course.sql");
         executeQueries(sqlFilePath, em);
 
-        sqlFilePath = Paths.get("src/main/resources/sql-scripts/User.sql");
+        sqlFilePath = Paths.get("src/main/resources/sql-scripts/user_type.sql");
+        executeQueries(sqlFilePath, em);
+
+        sqlFilePath = Paths.get("src/main/resources/sql-scripts/user_auth_type.sql");
         executeQueries(sqlFilePath, em);
 
         sqlFilePath = Paths.get("src/main/resources/sql-scripts/student.sql");
@@ -45,11 +51,17 @@ public class InitializerUtil {
         sqlFilePath = Paths.get("src/main/resources/sql-scripts/instructor_course.sql");
         executeQueries(sqlFilePath, em);
 
-        sqlFilePath = Paths.get("src/main/resources/sql-scripts/authGroup.sql");
-        executeQueries(sqlFilePath, em);
 
-        sqlFilePath = Paths.get("src/main/resources/sql-scripts/admin.sql");
-        executeQueries(sqlFilePath, em);
+
+//        sqlFilePath = Paths.get("src/main/resources/sql-scripts/student_course.sql");
+//        executeQueries(sqlFilePath, em);
+//
+//        sqlFilePath = Paths.get("src/main/resources/sql-scripts/instructor_course.sql");
+//        executeQueries(sqlFilePath, em);
+
+        // initialize user_auth_type table
+
+        // intialize user_type table
 
     }
 

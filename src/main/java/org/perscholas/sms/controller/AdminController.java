@@ -5,6 +5,7 @@ import lombok.extern.java.Log;
 import org.perscholas.sms.entity.Student;
 import org.perscholas.sms.entity.User;
 import org.perscholas.sms.service.AdminService;
+import org.perscholas.sms.service.IdentityService;
 import org.perscholas.sms.service.StudentService;
 import org.perscholas.sms.service.UserService;
 import org.springframework.stereotype.Controller;
@@ -22,54 +23,39 @@ public class AdminController {
     StudentService studentService;
     AdminService adminService;
     UserService userService;
+    IdentityService identityService;
 
     @GetMapping("/viewAllStudents")
     public String viewAllStudents(Model model) {
         List<Student> students = studentService.getAllStudents();
         model.addAttribute("students", students);
+        model.addAttribute("user", identityService.getCurrentUser());
         return "viewAllStudents";
     }
 
     @GetMapping("/registerStudentToCourse")
-    public String registerStudentToCourse() {
+    public String registerStudentToCourse(Model model) {
+        model.addAttribute("user", identityService.getCurrentUser());
         return "registerStudentToCourse";
     }
 
     @GetMapping("/createCourse")
-    public String createCourse() {
+    public String createCourse(Model model) {
+        model.addAttribute("user", identityService.getCurrentUser());
         return "createCourse";
     }
 
     @GetMapping("/addUser")
-    public String addUser() {
+    public String addUser(Model model) {
+        model.addAttribute("user", identityService.getCurrentUser());
         return "addUser";
     }
 
     @PostMapping("userSearchResults")
     public String userSearchResultsPost(@RequestParam String userSearch, Model model) {
         model.addAttribute("userSearch", userSearch);
+        model.addAttribute("user", identityService.getCurrentUser());
         return "userSearchResults";
     }
 
-    @GetMapping("/dashboard")
-    public String dashboard() {
-        return "dashboard";
-    }
-
-    @GetMapping("/profile")
-    public String showProfile(Model model) {
-
-        log.info("admin/profile has been requested");
-
-        User user = adminService.getCurrentAdmin();
-
-        model.addAttribute("user", user);
-        return "profile";
-    }
-
-    @PostMapping("/updateProfile")
-    public String updateProfile(@ModelAttribute("user") User user) {
-        userService.updateUser(user);
-        return "redirect:/admin/profile";
-    }
 }

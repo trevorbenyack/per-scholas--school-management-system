@@ -1,6 +1,6 @@
 package org.perscholas.sms.security;
 
-import org.perscholas.sms.entity.AuthGroup;
+import org.perscholas.sms.entity.UserAuthType;
 import org.perscholas.sms.entity.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -9,30 +9,32 @@ import org.springframework.stereotype.Component;
 
 import java.util.*;
 
+// This packages the user object and its granted Authorities into an AppUserPrincipal object
+// That is then registered with the provider in AppSecurityConfiguration.
 @Component
 public class AppUserPrincipal implements UserDetails {
 
-    //fields
-    private User user;
-    private List<AuthGroup> authGroups;
+    private final User user;
+    private final List<UserAuthType> userAuthTypes;
 
-    public AppUserPrincipal(User user, List<AuthGroup> authGroups) {
+    public AppUserPrincipal(User user, List<UserAuthType> userAuthTypes) {
         this.user = user;
-        this.authGroups = authGroups;
+        this.userAuthTypes = userAuthTypes;
     }
 
+    // Creates a collection of the user's authorities
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
 
-        if(null == authGroups){
+        if(null == userAuthTypes){
             return Collections.emptySet();
         }
 
-        //init
+        // init
         Set<SimpleGrantedAuthority> grantedAuthorities = new HashSet<>();
 
-        authGroups.forEach(authGroup -> {
-            grantedAuthorities.add(new SimpleGrantedAuthority(authGroup.getAAuthGroup()));
+        userAuthTypes.forEach(userAuthType -> {
+            grantedAuthorities.add(new SimpleGrantedAuthority(userAuthType.getUserType().getUserTypeTitle().getRole()));
         });
 
         return grantedAuthorities;
@@ -47,7 +49,7 @@ public class AppUserPrincipal implements UserDetails {
 
     @Override
     public String getUsername() {
-        return this.user.getEmail();
+        return this.user.getId().toString();
     }
 
     @Override

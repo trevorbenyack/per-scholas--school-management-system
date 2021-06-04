@@ -58,29 +58,14 @@ public class StudentController {
 //        return courses;
 //    }
 
-    @GetMapping("/profile")
-    public String showProfile(Model model) {
-
-        User user = studentService.getCurrentStudent();
-
-        model.addAttribute("user", user);
-        return "profile";
-    }
-
-    @PostMapping("/updateProfile")
-    public String updateProfile(@ModelAttribute("user") User user) {
-        userService.updateUser(user);
-        return "redirect:/student/profile";
-    }
-
     @GetMapping("/courses")
     public String courses(Model model) {
 
         Student student = studentService.getCurrentStudent();
-
         List<Course> courses = student.getCourses();
 
         model.addAttribute("courses", courses);
+
         return "courses";
     }
 
@@ -108,7 +93,5 @@ public class StudentController {
     public String dashboard() {
         return "dashboard";
     }
-
-
 
 }

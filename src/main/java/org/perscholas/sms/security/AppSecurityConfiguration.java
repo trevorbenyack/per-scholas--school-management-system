@@ -42,7 +42,7 @@ public class AppSecurityConfiguration extends WebSecurityConfigurerAdapter {
         auth.authenticationProvider(authenticationProvider());
     }
 
-    //1
+    // 1 -- configure which routes to require authorization
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -58,7 +58,8 @@ public class AppSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout().invalidateHttpSession(true).clearAuthentication(true).logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/").permitAll().and().exceptionHandling().accessDeniedPage("/403");
     }
-    //2
+
+    // 2 -- Choose which routes to not require authorization
     @Override
     public void configure(final WebSecurity web) throws Exception {
         web.ignoring().antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/imgs/**");
@@ -67,8 +68,8 @@ public class AppSecurityConfiguration extends WebSecurityConfigurerAdapter {
 //    @Override
 //    public UserDetailsService userDetailsService() {
 //        List<UserDetails> users = new ArrayList<>();
-//        users.add(AuthGroup.withDefaultPasswordEncoder().username("admin").password("password").roles("USER", "ADMIN").build());
-//        users.add(AuthGroup.withDefaultPasswordEncoder().username("user").password("password").roles("USER").build());
+//        users.add(AuthType.withDefaultPasswordEncoder().username("admin").password("password").roles("USER", "ADMIN").build());
+//        users.add(AuthType.withDefaultPasswordEncoder().username("user").password("password").roles("USER").build());
 //        return new InMemoryUserDetailsManager(users);
 //    }
 }

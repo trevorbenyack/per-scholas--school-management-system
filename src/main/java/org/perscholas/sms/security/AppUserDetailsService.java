@@ -1,8 +1,11 @@
 package org.perscholas.sms.security;
 
 
-import org.perscholas.sms.entity.AuthGroup;
+import lombok.AllArgsConstructor;
+import org.perscholas.sms.dao.UserAuthTypeRepository;
+import org.perscholas.sms.entity.UserAuthType;
 import org.perscholas.sms.entity.User;
+import org.perscholas.sms.service.UserAuthTypeService;
 import org.perscholas.sms.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,20 +14,16 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class AppUserDetailsService implements UserDetailsService {
 
     private final UserService userService;
-    private final IAuthGroup authGroup;
+    private final UserAuthTypeService userAuthTypeService;
 
-    @Autowired
-    public AppUserDetailsService(UserService userService, IAuthGroup authGroup) {
-        this.userService = userService;
-        this.authGroup = authGroup;
-    }
 
+    // Using userEmail as parameter b/c this is the information the user provides when logging in
     @Override
     public UserDetails loadUserByUsername(String userEmail) throws UsernameNotFoundException {
 
@@ -34,7 +33,7 @@ public class AppUserDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException("Cannot find Username: " + userEmail);
         }
 
-        List<AuthGroup> authGroups = authGroup.findByaEmail(userEmail);
-        return new AppUserPrincipal(user,authGroups);
+        List<UserAuthType> userAuthTypes = userAuthTypeService.getUserAuthTypeByUser(user);
+        return new AppUserPrincipal(user, userAuthTypes);
     }
 }
