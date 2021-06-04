@@ -11,6 +11,7 @@ import org.perscholas.sms.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -79,9 +80,10 @@ public class UserController {
     }
 
     @PostMapping("/updateProfile")
-    public String updateProfile(@ModelAttribute("user") User user) {
+    public String updateProfile(@ModelAttribute("user") User user, RedirectAttributes redirectAttributes) {
         userService.updateUser(user);
-        return "redirect:/admin/profile";
+        redirectAttributes.addFlashAttribute("user", user);
+        return "redirect:/user/profile";
     }
 
 }
